@@ -2,30 +2,4 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div id="content_trai">
-    <ul>
-        <li>@Ajax.ActionLink("Phát Sinh Barcode","PhatSinh",new AjaxOptions{
-        HttpMethod="POST",
-        InsertionMode= InsertionMode.Replace,
-        UpdateTargetId="content_phai"})
-                          
-        </li>
-        <li>@Ajax.ActionLink("Thống Kê Theo Khoa","TK_DG_Khoa",new AjaxOptions{
-        HttpMethod="POST",
-        InsertionMode= InsertionMode.Replace,
-        UpdateTargetId="content_phai"})</li>
-        <li>
-            @Ajax.ActionLink("Thống Kê Theo Năm","TK_DG_Nam",new AjaxOptions{
-                HttpMethod="POST",
-                InsertionMode= InsertionMode.Replace,
-                UpdateTargetId="content_phai"})               
-        </li>
-        <li>@Html.ActionLink("function3", "Index", "Home")</li>
-        <li>@Html.ActionLink("function4", "Index", "Home")</li>
-
-    </ul>
-</div>
-<div id="content_phai">
-    <h2>This is page index</h2>
-</div>
+<h2> chao mung ban den voi thu vien KHOA HOC TU NHIEN tp.HCM</h2>

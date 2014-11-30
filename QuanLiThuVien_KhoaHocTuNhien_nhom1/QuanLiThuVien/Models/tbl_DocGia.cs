@@ -14,6 +14,11 @@ namespace QuanLiThuVien.Models
     
     public partial class tbl_DocGia
     {
+        public tbl_DocGia()
+        {
+            this.phieumuons = new HashSet<phieumuon>();
+        }
+    
         public string ID { get; set; }
         public string Ten { get; set; }
         public string DiaChi { get; set; }
@@ -28,5 +33,7 @@ namespace QuanLiThuVien.Models
         public Nullable<System.DateTime> NgayHetHan { get; set; }
         public string User { get; set; }
         public string Pass { get; set; }
+    
+        public virtual ICollection<phieumuon> phieumuons { get; set; }
     }
 }

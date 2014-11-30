@@ -26,7 +26,5 @@ namespace QuanLiThuVien.Models
         public string GioiTinh { get; set; }
         public Nullable<System.DateTime> NgayCapNhat { get; set; }
         public Nullable<System.DateTime> NgayHetHan { get; set; }
-        public string User { get; set; }
-        public string Pass { get; set; }
     }
 }

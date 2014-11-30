@@ -8,6 +8,6 @@ namespace QuanLiThuVien.Models
 {
     public class pic
     {
-        public string image { get; set; }
+        public string id { get; set; }
     }
 }

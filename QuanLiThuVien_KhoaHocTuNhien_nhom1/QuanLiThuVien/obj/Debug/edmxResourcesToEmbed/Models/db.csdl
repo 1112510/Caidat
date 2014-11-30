@@ -1,8 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ThuVien_TrailModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="QLThuVienEntities1" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="QLThuVienEntities2" p1:LazyLoadingEnabled="true">
     <EntitySet Name="tbl_DocGia" EntityType="ThuVien_TrailModel.tbl_DocGia" />
     <EntitySet Name="tbl_DocGia_Tam" EntityType="ThuVien_TrailModel.tbl_DocGia_Tam" />
+    <EntitySet Name="tbl_LoaiNV" EntityType="ThuVien_TrailModel.tbl_LoaiNV" />
+    <EntitySet Name="tbl_NhanVien" EntityType="ThuVien_TrailModel.tbl_NhanVien" />
+    <EntitySet Name="Answers" EntityType="ThuVien_TrailModel.Answer" />
+    <EntitySet Name="phieumuons" EntityType="ThuVien_TrailModel.phieumuon" />
+    <EntitySet Name="Questions" EntityType="ThuVien_TrailModel.Question" />
+    <EntitySet Name="Saches" EntityType="ThuVien_TrailModel.Sach" />
+    <AssociationSet Name="FK_Answer_Question" Association="ThuVien_TrailModel.FK_Answer_Question">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Answer" EntitySet="Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phieumuon_docgia" Association="ThuVien_TrailModel.FK_phieumuon_docgia">
+      <End Role="tbl_DocGia" EntitySet="tbl_DocGia" />
+      <End Role="phieumuon" EntitySet="phieumuons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_phieumuon_sach" Association="ThuVien_TrailModel.FK_phieumuon_sach">
+      <End Role="Sach" EntitySet="Saches" />
+      <End Role="phieumuon" EntitySet="phieumuons" />
+    </AssociationSet>
+    <FunctionImport Name="sp_Giahan">
+      <Parameter Name="idsach" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbl_DocGia">
     <Key>
@@ -22,6 +43,7 @@
     <Property Name="NgayHetHan" Type="DateTime" Precision="3" />
     <Property Name="User" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="Pass" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="phieumuons" Relationship="ThuVien_TrailModel.FK_phieumuon_docgia" FromRole="tbl_DocGia" ToRole="phieumuon" />
   </EntityType>
   <EntityType Name="tbl_DocGia_Tam">
     <Key>
@@ -42,4 +64,107 @@
     <Property Name="User" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
     <Property Name="Pass" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
   </EntityType>
+  <EntityType Name="tbl_LoaiNV">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_NhanVien">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="Ten" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="SDT" Type="String" MaxLength="12" Unicode="false" FixedLength="true" />
+    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="LoaiNV" Type="Int32" Nullable="false" />
+    <Property Name="Luong" Type="Double" />
+    <Property Name="Password" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+    <Property Name="CapBac" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="ID_a" />
+    </Key>
+    <Property Type="Int32" Name="ID_a" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Answer1" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Answer_choice" />
+    <Property Type="Int32" Name="ID_q" />
+    <NavigationProperty Name="Question" Relationship="ThuVien_TrailModel.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="phieumuon">
+    <Key>
+      <PropertyRef Name="IDdocgia" />
+      <PropertyRef Name="IDsach" />
+      <PropertyRef Name="Ngaymuon" />
+    </Key>
+    <Property Type="String" Name="IDdocgia" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="IDsach" Nullable="false" />
+    <Property Type="DateTime" Name="Ngaymuon" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="Ngayhethan" Precision="3" />
+    <Property Type="DateTime" Name="Ngaytra" Precision="3" />
+    <Property Type="Int32" Name="SolanGH" />
+    <Property Type="String" Name="Ghichu" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_DocGia" Relationship="ThuVien_TrailModel.FK_phieumuon_docgia" FromRole="phieumuon" ToRole="tbl_DocGia" />
+    <NavigationProperty Name="Sach" Relationship="ThuVien_TrailModel.FK_phieumuon_sach" FromRole="phieumuon" ToRole="Sach" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="ID_q" />
+    </Key>
+    <Property Type="Int32" Name="ID_q" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Questiontext" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Answers" Relationship="ThuVien_TrailModel.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+  </EntityType>
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Tensach" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Theloai" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Tacgia" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="NXB" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Namsx" />
+    <NavigationProperty Name="phieumuons" Relationship="ThuVien_TrailModel.FK_phieumuon_sach" FromRole="Sach" ToRole="phieumuon" />
+  </EntityType>
+  <Association Name="FK_Answer_Question">
+    <End Type="ThuVien_TrailModel.Question" Role="Question" Multiplicity="0..1" />
+    <End Type="ThuVien_TrailModel.Answer" Role="Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="ID_q" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="ID_q" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phieumuon_docgia">
+    <End Type="ThuVien_TrailModel.tbl_DocGia" Role="tbl_DocGia" Multiplicity="1" />
+    <End Type="ThuVien_TrailModel.phieumuon" Role="phieumuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_DocGia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="phieumuon">
+        <PropertyRef Name="IDdocgia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_phieumuon_sach">
+    <End Type="ThuVien_TrailModel.Sach" Role="Sach" Multiplicity="1" />
+    <End Type="ThuVien_TrailModel.phieumuon" Role="phieumuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sach">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="phieumuon">
+        <PropertyRef Name="IDsach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

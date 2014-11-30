@@ -111,8 +111,9 @@ background:#555;
 #content{
     height:50%;
     width:100%;
-    
     margin:0px;
+    overflow: scroll;
+    word-wrap: break-word;
 }
 #content_trai {
 
@@ -126,12 +127,12 @@ background:#555;
     height:100%;
     background-color: #dff699;
     float:left;
+    overflow:scroll;
+    word-wrap: break-word;
 }
 
 /*menu doc trong content*/
-#content_trai{
-width:20%;
-}
+
 #content_trai h1{
 background:#99CC00;
 color:#FFFFFF;

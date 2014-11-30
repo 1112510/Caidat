@@ -1,0 +1,43 @@
+﻿@model IEnumerable<QuanLiThuVien.Models.Answer>
+
+@{
+    ViewBag.Title = "Index";
+    
+    
+}
+<h3 style="text-align: center">Video Hướng Dẫn</h3>
+<video src="../Content/video/channgan.mp4" controls="controls"></video>
+@TempData["thatbai"]
+@using (Ajax.BeginForm("TracNghiem","guest",new AjaxOptions{
+    HttpMethod="POST",
+    InsertionMode=InsertionMode.Replace,
+    UpdateTargetId= "content",
+    LoadingElementId="loading"
+    //OnComplete= "thanhCong"
+}))
+{
+
+     foreach (var item in Model)
+     {
+
+         if ((item.ID_a - 1) % 4 == 0)
+         {
+             <br>
+             @Html.Label("Câu")
+             @item.ID_q@Html.Label(": ")
+             @Html.DisplayFor(modelItem => item.Question.Questiontext)
+             <br>
+             <br>
+         }
+
+         <input type="radio" name="@item.ID_q" value="@item.ID_a"/>
+         @Html.DisplayFor(modelItem => item.Answer1)<br>
+         @Html.DisplayFor(modelItem => item.Answer_choice)<br>
+         
+     }
+
+     <input type="submit" value="Nop Bai" />
+}
+
+
+

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ThuVien_TrailModelStoreContainer" CdmEntityContainer="QLThuVienEntities1">
+  <EntityContainerMapping StorageEntityContainer="ThuVien_TrailModelStoreContainer" CdmEntityContainer="QLThuVienEntities2">
     <EntitySetMapping Name="tbl_DocGia">
       <EntityTypeMapping TypeName="ThuVien_TrailModel.tbl_DocGia">
         <MappingFragment StoreEntitySet="tbl_DocGia">
@@ -41,5 +41,72 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_LoaiNV">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.tbl_LoaiNV">
+        <MappingFragment StoreEntitySet="tbl_LoaiNV">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_NhanVien">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.tbl_NhanVien">
+        <MappingFragment StoreEntitySet="tbl_NhanVien">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LoaiNV" ColumnName="LoaiNV" />
+          <ScalarProperty Name="Luong" ColumnName="Luong" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CapBac" ColumnName="CapBac" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="ID_q" ColumnName="ID_q" />
+          <ScalarProperty Name="Answer_choice" ColumnName="Answer_choice" />
+          <ScalarProperty Name="Answer1" ColumnName="Answer" />
+          <ScalarProperty Name="ID_a" ColumnName="ID_a" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phieumuons">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.phieumuon">
+        <MappingFragment StoreEntitySet="phieumuon">
+          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+          <ScalarProperty Name="SolanGH" ColumnName="SolanGH" />
+          <ScalarProperty Name="Ngaytra" ColumnName="Ngaytra" />
+          <ScalarProperty Name="Ngayhethan" ColumnName="Ngayhethan" />
+          <ScalarProperty Name="Ngaymuon" ColumnName="Ngaymuon" />
+          <ScalarProperty Name="IDsach" ColumnName="IDsach" />
+          <ScalarProperty Name="IDdocgia" ColumnName="IDdocgia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="Questiontext" ColumnName="Questiontext" />
+          <ScalarProperty Name="ID_q" ColumnName="ID_q" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Saches">
+      <EntityTypeMapping TypeName="ThuVien_TrailModel.Sach">
+        <MappingFragment StoreEntitySet="Sach">
+          <ScalarProperty Name="Namsx" ColumnName="Namsx" />
+          <ScalarProperty Name="NXB" ColumnName="NXB" />
+          <ScalarProperty Name="Tacgia" ColumnName="Tacgia" />
+          <ScalarProperty Name="Theloai" ColumnName="Theloai" />
+          <ScalarProperty Name="Tensach" ColumnName="Tensach" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Giahan" FunctionName="ThuVien_TrailModel.Store.sp_Giahan" />
   </EntityContainerMapping>
 </Mapping>

@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="@Url.Content("~/Content/CSS/giaodien_type_thuvien.css")" />
-
-
+    <script type="text/javascript">
+        function PopUpLogin() {
+            window.showModalDialog("/guest/Login", "log", "dialogHeight:300px; dialogWidth:400px;");
+        }
+    </script>
 </head>
 <body>
     <div id="all_page">
@@ -30,7 +33,9 @@
                                </ul>
                            </li>
                            <li><a href="#">Services</a></li>
-                           <li><a href="#">Site Map</a></li>
+                           <li><a href="#">Site Map</a>
+
+                           </li>
                           
                        </ul>
                    </div>@*header_menu_top*@
@@ -42,31 +47,65 @@
                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                            <li>
-                               @Html.ActionLink("Home", "Index", "Home")
-                               
+                               @Html.ActionLink("Home", "Index", "Home")    
                            </li>
                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
                        </ul>
                    </div>@*header_menu_up*@
 
             </div>@*header menu*@
-            <div id="header_phai">
-                something here
+            <div id="header_phai">          <!-- danh cho viec dang nhap va dang xuat-->
+                @if (Session["Username"] != null)
+                {
+                    <div style="border: solid thin black; padding:2px;">
+                        @Html.ActionLink("dang xuat","LogOut","home")
+                    </div>
+                    <div style="border: solid thin black; padding:2px;">
+                        @Ajax.ActionLink("chinh sua thong tin", "EditInfo", "home"
+                        , new { load_Layout = "1" },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "content",
+                            LoadingElementId="loading"
+
+                        })
+                    </div>
+                }
+                else
+                {
+                    <form id="theForm" action="guest/Login1" method="GET">
+                        <input type="hidden" id="user" name="user"/>
+                        <input type="hidden" id="pass" name="pass" />
+                        <br><input type="submit" value="login" onclick="window.open('/guest/Login', '', 'height=400,width=400'); return false;"/>
+                    </form>    
+                    
+                    using (Ajax.BeginForm("HocOnline", "guest", new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "content",
+                        LoadingElementId = "loading"
+                    }))
+                    {
+                        <input type="submit" value="dang ki doc gia" />
+                    }
+                }
             </div>
         </div>@*quan li header*@
         
         <div id="banner">
             <!--<img src="../Content/images/website/image_u4.jpg" style="width: initial;"/>-->
         </div>@*quan li banner*@
-
+        
         <div id="content">
             @RenderBody()
         </div>@*quan li body*@
-        
+        <div id="loading" style="display:none;">loading...</div>
         <div id="footer">
-            1112516 - Đinh Văn Vạn
+            nhom 1
         </div>@*quan li footer*@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryval")

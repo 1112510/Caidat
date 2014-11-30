@@ -10,7 +10,5 @@ namespace QuanLiThuVien.Models
         
             public int tong { get; set; }
             public string ten { get; set; }
-           
-        
     }
 }

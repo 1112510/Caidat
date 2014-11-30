@@ -111,4 +111,3 @@ F:\CHUYEN NGANH\PHAT TRIEN UNG DUNG HTTT HIEN DAI\Bai tap\QuanLiThuVien_KhoaHocT
 F:\CHUYEN NGANH\PHAT TRIEN UNG DUNG HTTT HIEN DAI\Bai tap\QuanLiThuVien_KhoaHocTuNhien\QuanLiThuVien\bin\System.Web.WebPages.Razor.xml
 F:\CHUYEN NGANH\PHAT TRIEN UNG DUNG HTTT HIEN DAI\Bai tap\QuanLiThuVien_KhoaHocTuNhien\QuanLiThuVien\obj\Debug\QuanLiThuVien.dll
 F:\CHUYEN NGANH\PHAT TRIEN UNG DUNG HTTT HIEN DAI\Bai tap\QuanLiThuVien_KhoaHocTuNhien\QuanLiThuVien\obj\Debug\QuanLiThuVien.pdb
-F:\CHUYEN NGANH\PHAT TRIEN UNG DUNG HTTT HIEN DAI\Bai tap\QuanLiThuVien_KhoaHocTuNhien\QuanLiThuVien\obj\Debug\QuanLiThuVien.csprojResolveAssemblyReference.cache
